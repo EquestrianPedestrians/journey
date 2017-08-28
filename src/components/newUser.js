@@ -1,5 +1,3 @@
-<script src="http://localhost:8097"></script>
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -9,7 +7,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-export default class App extends Component {
+export default class NewUser extends Component {
   constructor(props) {
     super(props);
     this.state = {  dataSource: [], isLoading: true  };
@@ -50,7 +48,8 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
+    alignContent: 'center',
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -59,13 +58,8 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
+    margin: 50,
     color: 'white',
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
 

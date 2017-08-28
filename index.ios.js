@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
 } from 'react-native';
-import App from './components/app';
+import NewUser from './src/components/newUser';
 
 
 
 export default class Journey extends Component {
   render() {
     return (
-      <App />
+      <NewUser />
     );
   }
 }
