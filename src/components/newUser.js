@@ -14,7 +14,7 @@ export default class NewUser extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8080/api/users/test')
+    fetch('http://13.56.14.49:8080/api/users/test')
       .then(resp => resp.json())
       .then(data => {
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -39,7 +39,7 @@ export default class NewUser extends Component {
       <View style={styles.container}>
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={rowData => <Text style={styles.welcome}>{rowData.name}: {rowData.email}</Text>}
+          renderRow={rowData => <Text style={styles.welcome}>{rowData.city}: {rowData.tripLength}</Text>}
           />
       </View>
     );
@@ -48,7 +48,7 @@ export default class NewUser extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 3,
+    flex: 1,
     alignContent: 'center',
     padding: 20,
     justifyContent: 'center',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 50,
+    margin: 20,
     color: 'white',
   }
 });
