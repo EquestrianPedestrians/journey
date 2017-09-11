@@ -7,28 +7,32 @@ import {
   View
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
 
-class NewTrip extends Component {
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
+class Name extends Component {
   static navigationOptions = {
-    title: 'New Trip'
-  }
-  constructor(props) {
-    super(props);
-    this.state = {title: ''};
+    title: 'Name'
   }
 
   render() {
+    console.log(this.props.data)
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
       <Text style={styles.message}> 
-        Name your journey: 
+        What should I call you? 
       </Text>
       <TextInput 
         style={styles.input}
-        placeholder="Spain 2018"
-        onChangeText={(text) => this.setState({title:text})}
-        onSubmitEditing={() => navigate('Destination')}
+        placeholder="Muffincakes?"
+        onChangeText={(text) => this.props.setData({name:text})}
+        onSubmitEditing={() => navigate('NewTrip')}
         />
     </View>
     )
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FF8484',
+    backgroundColor: '#319CE2',
   },
   input: {
     fontSize: 35,
@@ -56,4 +60,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewTrip;
+export default connect(mapStateToProps, mapDispatchToProps)(Name);

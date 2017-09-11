@@ -5,16 +5,24 @@ import {
   View
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
+
+
 class Begin extends Component {
   static navigationOptions = {
     title: 'Begin'
   }
 
-  clickCreate() {
-    //sign up modal with auth0
-  }
 
   render() {
+    console.log(this.props.data)
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
@@ -24,7 +32,7 @@ class Begin extends Component {
         <Text>CREATE </Text> an account.
       </Text>
       <Text style={styles.message}>Or tap 
-        <Text onPress={() => navigate('NewTrip')}
+        <Text onPress={() => navigate('Name')}
           > BEGIN!
         </Text>
       </Text>
@@ -55,4 +63,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Begin;
+export default connect(mapStateToProps, mapDispatchToProps)(Begin);

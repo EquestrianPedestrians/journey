@@ -4,27 +4,22 @@ import {
   Text,
   View
 } from 'react-native';
+import { FadeInView } from './FadeInView'
 
-class AddDestination extends Component {
-  static navigationOptions = {
-    title: 'Add a Destination'
+class Set extends Component {
+  static navigationOptions = {}
+
+  componentDidMount() {
+    
   }
-
 
   render() {
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
-      <Text style={styles.message}>
-      Tap 
-      {'\n'}
-        <Text onPress={() => navigate('Destination')}
-          >ADD </Text>to add a new destination
-      </Text>
-      <Text style={styles.message}>Or tap 
-        <Text onPress={() => navigate('Ready')}> FINISH!
-        </Text>
-      </Text>
+      <FadeInView style={{backgroundColor: "#319CE2"}}> 
+        <Text style={styles.message}>Set...</Text>
+      </FadeInView>
     </View>
     )
   }
@@ -37,7 +32,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4DCCBD',
+    backgroundColor: 'white',
   },
   message: {
     fontSize: 25,
@@ -47,4 +42,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddDestination;
+export default Set;
