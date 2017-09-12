@@ -6,13 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-// **** REDUX **** //
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
 
-const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
-const mapStateToProps = state => { return { data: state.data }}
 
 class Departure extends Component {
   static navigationOptions = {
@@ -35,7 +29,9 @@ class Departure extends Component {
         style={styles.input}
         placeholder="Jan 15, 2018"
         onChangeText={(text) => this.setState({date:text})}
-        onSubmitEditing={() => navigate('AddDestination')}
+        onSubmitEditing={() => {
+          this.props.screenProps.update(this.state)
+          navigate('AddDestination')}}
         />
     </View>
     )
@@ -63,4 +59,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Departure);
+export default Departure;

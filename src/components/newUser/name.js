@@ -6,13 +6,8 @@ import {
   TextInput,
   View
 } from 'react-native';
-// **** REDUX **** //
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
 
-const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
-const mapStateToProps = state => { return { data: state.data }}
+
 
 class Name extends Component {
   static navigationOptions = {
@@ -35,11 +30,12 @@ class Name extends Component {
         placeholder="Muffincakes?"
         onChangeText={(text) => this.setState({name:text})}
         onSubmitEditing={() => {
-          this.props.setData(this.state)
-          navigate('NewTrip')
+          this.props.screenProps.update(this.state)
+          navigate('NewTrip', {name: this.state})
         }}
         />
     </View>
+
     )
   }
 }
@@ -65,4 +61,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Name);
+export default Name;

@@ -7,13 +7,6 @@ import {
   View
 } from 'react-native';
 
-// **** REDUX **** //
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
-
-const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
-const mapStateToProps = state => { return { data: state.data }}
 
 class NewTrip extends Component {
   static navigationOptions = {
@@ -25,7 +18,6 @@ class NewTrip extends Component {
   }
 
   render() {
-    console.log(this.props.data)
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
@@ -37,7 +29,7 @@ class NewTrip extends Component {
         placeholder="Spain 2018"
         onChangeText={(text) => this.setState({title:text})}
         onSubmitEditing={() => {
-          this.props.setData(this.state)
+          this.props.screenProps.update(this.state)
           navigate('Destination')}}
         />
     </View>
@@ -66,4 +58,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewTrip);
+export default NewTrip;

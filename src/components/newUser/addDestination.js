@@ -5,13 +5,6 @@ import {
   View
 } from 'react-native';
 
-// **** REDUX **** //
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
-
-const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
-const mapStateToProps = state => { return { data: state.data }}
 
 class AddDestination extends Component {
   static navigationOptions = {
@@ -31,7 +24,9 @@ class AddDestination extends Component {
           >ADD </Text>to add a new destination
       </Text>
       <Text style={styles.message}>Or tap 
-        <Text onPress={() => navigate('Ready')}> FINISH!
+        <Text onPress={() => {
+          navigate('Dashboard')
+          this.props.screenProps.save()}}> FINISH!
         </Text>
       </Text>
     </View>
@@ -56,4 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddDestination);
+export default AddDestination;
