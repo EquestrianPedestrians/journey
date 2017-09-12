@@ -6,6 +6,15 @@ import {
   StyleSheet
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
+
 class Arrival extends Component {
   static navigationOptions = {
     title: 'Date of Arrival'
@@ -26,7 +35,9 @@ class Arrival extends Component {
         style={styles.input}
         placeholder="Jan 15, 2018"
         onChangeText={(text) => this.setState({date:text})}
-        onSubmitEditing={() => navigate('Departure')}
+        onSubmitEditing={() => {
+          this.props.setData(this.state)
+          navigate('Departure')}}
         />
     </View>
     )
@@ -54,4 +65,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Arrival;
+export default connect(mapStateToProps, mapDispatchToProps)(Arrival);

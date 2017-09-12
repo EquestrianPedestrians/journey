@@ -6,6 +6,15 @@ import {
   StyleSheet
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
+
 class Destination extends Component {
   static navigationOptions = {
     title: 'Enter Destination'
@@ -25,8 +34,10 @@ class Destination extends Component {
       <TextInput 
         style={styles.input}
         placeholder="Barcelona"
-        onChangeText={(text) => this.setState({destination:text})}
-        onSubmitEditing={() => navigate('Arrival')}
+        onChangeText={(text) => this.setState({place:text})}
+        onSubmitEditing={() => {
+          this.props.setData(this.state)
+          navigate('Arrival')}}
         />
     </View>
     )
@@ -54,4 +65,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Destination;
+export default connect(mapStateToProps, mapDispatchToProps)(Destination);

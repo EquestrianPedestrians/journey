@@ -5,6 +5,14 @@ import {
   View
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
 class AddDestination extends Component {
   static navigationOptions = {
     title: 'Add a Destination'
@@ -12,6 +20,7 @@ class AddDestination extends Component {
 
 
   render() {
+    console.log(this.props)
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
@@ -47,4 +56,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddDestination;
+export default connect(mapStateToProps, mapDispatchToProps)(AddDestination);

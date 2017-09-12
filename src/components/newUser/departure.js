@@ -6,6 +6,14 @@ import {
   StyleSheet
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
 class Departure extends Component {
   static navigationOptions = {
     title: 'Date of Departure'
@@ -16,6 +24,7 @@ class Departure extends Component {
   }
 
  render() {
+  console.log(this.props.data)
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
@@ -54,4 +63,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Departure;
+export default connect(mapStateToProps, mapDispatchToProps)(Departure);

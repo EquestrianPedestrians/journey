@@ -6,7 +6,6 @@ import {
   TextInput,
   View
 } from 'react-native';
-
 // **** REDUX **** //
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,9 +18,12 @@ class Name extends Component {
   static navigationOptions = {
     title: 'Name'
   }
+  constructor(props) {
+    super(props);
+    this.state = {name: ''}
+  }
 
   render() {
-    console.log(this.props.data)
     const { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
@@ -31,8 +33,11 @@ class Name extends Component {
       <TextInput 
         style={styles.input}
         placeholder="Muffincakes?"
-        onChangeText={(text) => this.props.setData({name:text})}
-        onSubmitEditing={() => navigate('NewTrip')}
+        onChangeText={(text) => this.setState({name:text})}
+        onSubmitEditing={() => {
+          this.props.setData(this.state)
+          navigate('NewTrip')
+        }}
         />
     </View>
     )
