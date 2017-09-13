@@ -2,47 +2,55 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  TextInput,
+  FlatList,
   View
 } from 'react-native';
-import axios from 'axios';
-import ApiKey from '../../keys'
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
-    this.state = {lat: '', lng: ''}
-    this.getWeather = this.getWeather.bind(this);
+    this.state = { data: this.props.screenProps.data }
   }
 
-  componentDidMount() {
-    this.getGeocode()
-    
-    window.setTimeout(this.getWeather, 2000)
+  componentWillReceiveProps(nextProps) {
+    console.log('DASHBOARD:', nextProps.screenProps)
+    if (nextProps.screenProps.data !== this.state.data) {
+      this.setState({ data: nextProps.screenProps.data.daily })
+    }
   }
 
-  getWeather() {
-    axios.get('https://api.darksky.net/forecast/' + 
-    ApiKey.DarkSky + '/' + this.state.lat + ',' + this.state.lng)
-      .then((res) => console.log(res.data.currently))
-      .catch((err) => console.log('Error: ', err))
-    
-  }
-
-  getGeocode() {
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json?address=+' + 'Barcelona' + ',+' + 'Spain' + '&key=' + ApiKey.Geocoding)
-    .then((res) => {
-      this.setState({lat: res.data.results[0].geometry.location.lat})
-      this.setState({lng: res.data.results[0].geometry.location.lng})
-    })
-    .catch((err) => console.log(err))
-  }
 
   render() {
+    const { data } = this.state.data;
     return (
-      <View></View>
+      <View style={styles.container}>
+        <FlatList 
+        data={data} 
+        renderItem={({item}) => <ListItem summary={item.summary} />}
+        />
+      </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignContent: 'center',
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#319CE2',
+  },
+  input: {
+    fontSize: 35,
+    color: 'white'
+  },
+  message: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 20,
+    color: 'white',
+  }
+})
 export default Dashboard;

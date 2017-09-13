@@ -10,11 +10,16 @@ class AddDestination extends Component {
   static navigationOptions = {
     title: 'Add a Destination'
   }
-
+  constructor(props) {
+    super(props);
+    this.onFinish = this.onFinish.bind(this);
+  }
+  onFinish() {
+  this.props.navigation.navigate('Dashboard');
+  }
 
   render() {
-    console.log(this.props)
-    const { navigate } = this.props.navigation;
+    let { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
       <Text style={styles.message}>
@@ -25,7 +30,7 @@ class AddDestination extends Component {
       </Text>
       <Text style={styles.message}>Or tap 
         <Text onPress={() => {
-          navigate('Dashboard')
+          window.setTimeout(this.onFinish, 1000);
           this.props.screenProps.save()}}> FINISH!
         </Text>
       </Text>
