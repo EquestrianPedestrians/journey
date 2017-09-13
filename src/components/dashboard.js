@@ -5,13 +5,16 @@ import {
   FlatList,
   View
 } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = { data: this.props.screenProps.data }
   }
-
+  componentDidMount() {
+    console.log('Component Mounted!!!', this.props)
+  }
   componentWillReceiveProps(nextProps) {
     console.log('DASHBOARD:', nextProps.screenProps)
     if (nextProps.screenProps.data !== this.state.data) {
@@ -21,13 +24,21 @@ class Dashboard extends Component {
 
 
   render() {
-    const { data } = this.state.data;
+    const { data } = this.state.data.daily;
+    console.log('DASHBOARD:', data)
     return (
       <View style={styles.container}>
-        <FlatList 
-        data={data} 
-        renderItem={({item}) => <ListItem summary={item.summary} />}
-        />
+        <List containerStyle={styles.container}>
+            <FlatList 
+            data={data} 
+            renderItem={({item}) => (
+              <Text style={styles.message}>
+                <Text>{item.time}</Text>
+              {item.summary} 
+              </Text>
+             )}
+            />
+        </List>
       </View>
     )
   }
@@ -47,7 +58,6 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   message: {
-    fontSize: 20,
     textAlign: 'center',
     margin: 20,
     color: 'white',
