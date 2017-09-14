@@ -15,7 +15,7 @@ class AddDestination extends Component {
     this.onFinish = this.onFinish.bind(this);
   }
   onFinish() {
-  this.props.navigation.navigate('Dashboard');
+  this.props.navigation.navigate('SingleDateView');
   }
 
   render() {

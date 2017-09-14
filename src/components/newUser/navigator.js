@@ -7,7 +7,7 @@ import Arrival from './arrival.js';
 import Departure from './departure.js'
 import AddDestination from './addDestination.js';
 import Name from './name.js';
-import Dashboard from '../dashboard';
+import SingleDateView from '../weather/SingleDateView';
 
 const NewUserViews = StackNavigator({
         Begin: { screen: Begin },
@@ -17,7 +17,7 @@ const NewUserViews = StackNavigator({
         Arrival: { screen: Arrival },
         Departure: { screen: Departure },
         AddDestination: { screen: AddDestination },
-        Dashboard: { screen: Dashboard },
+        SingleDateView: { screen: SingleDateView },
 
       })
 

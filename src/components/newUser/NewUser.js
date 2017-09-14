@@ -52,9 +52,7 @@ class NewUser extends Component {
     this.setState({userData: userInfo})
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('NEW USER:', nextProps)
-  }
+
 
   render() {
     // console.log('NEW USER: ', this.state)
