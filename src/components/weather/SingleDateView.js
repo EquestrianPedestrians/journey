@@ -22,18 +22,6 @@ class SingleDateView extends Component {
     
   }
   
-  showIcon(icon) {
-    const weather = {
-      'rain': (<IconRain />),
-      'partly-cloudy-day': (<IconPartSun />),
-      'clear-day': (<IconSunny />)
-    }
-    for (var key in weather) {
-      if (icon === key) {
-        return weather[key]
-      }
-    }
-  }
 
   render() {
     console.log('HEEERE:', this.props)
@@ -80,7 +68,7 @@ class SingleDateView extends Component {
             Humidity: 5%
           </Text>
         </Stats>
-        {this.showIcon('rain')}
+        {this.props.showIcon('rain')}
       </Background>
     )
   }

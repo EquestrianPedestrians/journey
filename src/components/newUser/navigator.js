@@ -13,6 +13,7 @@ import Dashboard from '../dashboard';
 
 
 const NewUserViews = StackNavigator({
+        AddDestination: { screen: AddDestination },
         Dashboard: { screen: Dashboard },
         Begin: { screen: Begin },
         Name: { screen: Name },
@@ -20,7 +21,6 @@ const NewUserViews = StackNavigator({
         Destination: { screen: Destination },
         Arrival: { screen: Arrival },
         Departure: { screen: Departure },
-        AddDestination: { screen: AddDestination },
       })
 
 const WeatherViews = StackNavigator({
