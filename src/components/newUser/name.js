@@ -27,7 +27,7 @@ class Name extends Component {
       </Text>
       <TextInput 
         style={styles.input}
-        placeholder="Muffincakes?"
+        placeholder={"Arya Stark"}
         onChangeText={(text) => this.setState({name:text})}
         onSubmitEditing={() => {
           this.props.screenProps.update(this.state)
@@ -43,7 +43,7 @@ class Name extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: 'center',
+    justifyContent: 'center',
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -51,10 +51,10 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 35,
-    color: 'white'
+    color: 'white',
   },
   message: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 20,
     color: 'white',

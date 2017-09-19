@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavigationActions } from 'react-navigation';
 import {
   StyleSheet,
   Text,
@@ -15,7 +16,13 @@ class AddDestination extends Component {
     this.onFinish = this.onFinish.bind(this);
   }
   onFinish() {
-  this.props.navigation.navigate('SingleDateView');
+    this.props.navigation.navigate('Dashboard')
+  //   const returnToDashboard = NavigationActions.navigate({
+  //     routeName: 'Dashboard',
+  //     params: {},
+  //     action: NavigationActions.navigate({routeName: 'Dashboard'})
+  //   })
+  // this.props.navigation.dispatch(returnToDashboard);
   }
 
   render() {
@@ -25,11 +32,13 @@ class AddDestination extends Component {
       <Text style={styles.message}>
       Tap 
       {'\n'}
-        <Text onPress={() => navigate('Destination')}
-          >ADD </Text>to add a new destination
+        <Text style={{fontWeight: 'bold'}}  
+        onPress={() => navigate('Destination')}
+        > HERE </Text>to add a new destination
       </Text>
       <Text style={styles.message}>Or tap 
-        <Text onPress={() => {
+        <Text style={{fontWeight: 'bold'}}
+          onPress={() => {
           window.setTimeout(this.onFinish, 1000);
           this.props.screenProps.save()}}> FINISH!
         </Text>
@@ -49,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4DCCBD',
   },
   message: {
-    fontSize: 25,
+    fontSize: 27,
     textAlign: 'center',
     margin: 20,
     color: 'white',

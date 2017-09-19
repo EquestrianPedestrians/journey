@@ -26,7 +26,7 @@ class NewTrip extends Component {
       </Text>
       <TextInput 
         style={styles.input}
-        placeholder="Spain 2018"
+        placeholder="Iceland 2018"
         onChangeText={(text) => this.setState({title:text})}
         onSubmitEditing={() => {
           this.props.screenProps.update(this.state)
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   message: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 20,
     color: 'white',

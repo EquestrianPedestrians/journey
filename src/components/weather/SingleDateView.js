@@ -45,7 +45,7 @@ class SingleDateView extends Component {
           </DateDay>
           <CardSection>
             <Text style={styles.date}>Wednesday</Text>
-            <Text style={styles.mmYY}>July 2017</Text>
+            <Text style={styles.mmYY}>JULY 2017</Text>
           </CardSection>
         </Card>
         <Stats>

@@ -8,8 +8,12 @@ import Departure from './departure.js'
 import AddDestination from './addDestination.js';
 import Name from './name.js';
 import SingleDateView from '../weather/SingleDateView';
+import Dashboard from '../dashboard';
+
+
 
 const NewUserViews = StackNavigator({
+        Dashboard: { screen: Dashboard },
         Begin: { screen: Begin },
         Name: { screen: Name },
         NewTrip: { screen: NewTrip },
@@ -17,11 +21,16 @@ const NewUserViews = StackNavigator({
         Arrival: { screen: Arrival },
         Departure: { screen: Departure },
         AddDestination: { screen: AddDestination },
-        SingleDateView: { screen: SingleDateView },
-
       })
 
+const WeatherViews = StackNavigator({
+        SingleDateView: { screen: SingleDateView },
+})
 
+const root = StackNavigator({
+  User: { screen: NewUserViews },
+  Weather: { screen: WeatherViews },
+})
 
 
 

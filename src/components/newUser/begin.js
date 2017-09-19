@@ -28,10 +28,10 @@ class Begin extends Component {
     <Text style={styles.title}> JOURNEY </Text>
       <Text style={styles.message}>To begin 
       {'\n'}
-        <Text>CREATE </Text> an account.
+        <Text style={{fontWeight: 'bold'}}>CREATE </Text> an account.
       </Text>
       <Text style={styles.message}>Or tap 
-        <Text onPress={() => navigate('Name')}
+        <Text style={{fontWeight: 'bold'}} onPress={() => navigate('Name')}
           > BEGIN!
         </Text>
       </Text>
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#4DCCBD',
   },
   title: {
-    fontSize: 60,
+    fontSize: 80,
     textAlign: 'center',
     color: 'white'
   },
   message: {
-    fontSize: 15,
+    fontSize: 20,
     textAlign: 'center',
     margin: 20,
     color: 'white',

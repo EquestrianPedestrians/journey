@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ADFFED',
   },
   input: {
-    fontSize: 25,
+    fontSize: 30,
     color: '#231651'
   },
   message: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 20,
     color: '#231651',
