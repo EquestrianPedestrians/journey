@@ -11,26 +11,30 @@ import SingleDateView from '../weather/SingleDateView';
 import Dashboard from '../dashboard';
 
 
-
-const NewUserViews = StackNavigator({
+export const WeatherViews = StackNavigator({
         AddDestination: { screen: AddDestination },
         Dashboard: { screen: Dashboard },
+        SingleDateView: { screen: SingleDateView },
+})
+
+export const NewUserViews = StackNavigator({
         Begin: { screen: Begin },
         Name: { screen: Name },
         NewTrip: { screen: NewTrip },
         Destination: { screen: Destination },
         Arrival: { screen: Arrival },
         Departure: { screen: Departure },
-      })
-
-const WeatherViews = StackNavigator({
-        SingleDateView: { screen: SingleDateView },
+        AddDestination: { screen: WeatherViews },
+        }, {
+          headerMode: 'none',
+          mode: 'modal'
 })
 
-const root = StackNavigator({
-  User: { screen: NewUserViews },
-  Weather: { screen: WeatherViews },
-})
+
+// const root = StackNavigator({
+//   User: { screen: NewUserViews },
+//   Weather: { screen: WeatherViews },
+// })
 
 
 

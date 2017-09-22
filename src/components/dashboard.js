@@ -4,7 +4,8 @@ import {
   Text,
   ScrollView,
   View,
-  Image
+  Image,
+  Button
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import moment from 'moment';
@@ -22,42 +23,37 @@ class Dashboard extends Component {
     super(props)
     this.state = { data: this.props.screenProps.data }
   }
-  componentDidMount() {
-    console.log('Component Mounted!!!', this.props)
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.screenProps.data !== this.state.data) {
-      this.setState({ data: nextProps.screenProps.data.daily })
-    }
-  }
+
   renderTime(item) {
     return moment(item.time).format('dddd MMMM do YYYY')
   }
 
-    showIcon(icon) {
-    const weather = {
-      'rain': (<IconRain style={styles.icon}/>),
-      'partly-cloudy-day': (<IconPartSun />),
-      'clear-day': (<IconSunny />)
-    }
-    for (var key in weather) {
-      if (icon === key) {
-        return weather[key]
-      }
+  showIcon(icon) {
+  const weather = {
+    'rain': (<IconRain style={styles.icon}/>),
+    'partly-cloudy-day': (<IconPartSun />),
+    'clear-day': (<IconSunny />)
+  }
+  for (var key in weather) {
+    if (icon === key) {
+      return weather[key]
     }
   }
+}
 
   render() {
+    const { navigate } = this.props.navigation;
     const { data } = this.state.data.daily;
     return (
       <View style={styles.container}>
         <View style={styles.tripsContainer}>
             <ScrollView>
-              <View style={styles.tripList}>
+              <View style={styles.tripListItem}>
                 <View style={styles.tripTitle}>
-                  <Text style={styles.title}>London 2018
+                  <Text style={styles.title}
+                  onPress={() => navigate('SingleDateView')}>London 2018
                   </Text>
-                  <Text style>12 JULY 2018</Text>
+                  <Text style={{color: 'white'}}>12 JULY 2018</Text>
                 </View>
                 <View style={styles.iconContainer}>
                   {this.showIcon('rain')}
@@ -65,6 +61,7 @@ class Dashboard extends Component {
             </View>
           </ScrollView>
         </View>
+        <Button title="Add"></Button>
       </View>
     )
   }
@@ -82,24 +79,28 @@ const styles = StyleSheet.create({
     marginTop: 150,
     position: 'relative',
     height: 400,
+    padding: 15
   },
-  tripList: {
+  tripListItem: {
     height: 100,
     backgroundColor: '#4DCCBD',
     padding: 30,
-
+    borderBottomWidth: 1,
+    borderBottomColor: '#D3D3D3'
   },
   tripTitle: {
-    color: '#1E1A28',
-    fontSize: 25,
     justifyContent:'center',
     alignItems: 'flex-start',
+  },
+  title: {
+    color: 'white',
+    fontSize: 25,
   },
   iconContainer: {
     justifyContent: 'flex-end',
     position: 'relative',
-    marginLeft: 225,
-    marginTop: -25,
+    marginLeft: 235,
+    marginTop: -30,
     height: 60,
     width: 60,
   },

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+// import WeatherViews from './navigator';
 
 
 class AddDestination extends Component {
@@ -17,12 +14,6 @@ class AddDestination extends Component {
   }
   onFinish() {
     this.props.navigation.navigate('Dashboard')
-  //   const returnToDashboard = NavigationActions.navigate({
-  //     routeName: 'Dashboard',
-  //     params: {},
-  //     action: NavigationActions.navigate({routeName: 'Dashboard'})
-  //   })
-  // this.props.navigation.dispatch(returnToDashboard);
   }
 
   render() {
