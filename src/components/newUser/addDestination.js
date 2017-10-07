@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import { StyleSheet, Text, View } from 'react-native';
+// import WeatherViews from './navigator';
+
 
 class AddDestination extends Component {
   static navigationOptions = {
     title: 'Add a Destination'
   }
-
+  constructor(props) {
+    super(props);
+    this.onFinish = this.onFinish.bind(this);
+  }
+  onFinish() {
+    this.props.navigation.navigate('Dashboard')
+  }
 
   render() {
-    const { navigate } = this.props.navigation;
+    let { navigate } = this.props.navigation;
     return (
     <View style={styles.container}>
       <Text style={styles.message}>
       Tap 
       {'\n'}
-        <Text onPress={() => navigate('Destination')}
-          >ADD </Text>to add a new destination
+        <Text style={{fontWeight: 'bold'}}  
+        onPress={() => navigate('Destination')}
+        > HERE </Text>to add a new destination
       </Text>
       <Text style={styles.message}>Or tap 
-        <Text > FINISH!
+        <Text style={{fontWeight: 'bold'}}
+          onPress={() => {
+          window.setTimeout(this.onFinish, 1000);
+          this.props.screenProps.save()}}> FINISH!
         </Text>
       </Text>
     </View>
@@ -40,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4DCCBD',
   },
   message: {
-    fontSize: 25,
+    fontSize: 27,
     textAlign: 'center',
     margin: 20,
     color: 'white',

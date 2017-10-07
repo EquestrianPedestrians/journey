@@ -5,14 +5,21 @@ import {
   View
 } from 'react-native';
 
+// **** REDUX **** //
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
+const mapStateToProps = state => { return { data: state.data }}
+
+
+
 class Begin extends Component {
   static navigationOptions = {
     title: 'Begin'
   }
 
-  clickCreate() {
-    //sign up modal with auth0
-  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -21,10 +28,10 @@ class Begin extends Component {
     <Text style={styles.title}> JOURNEY </Text>
       <Text style={styles.message}>To begin 
       {'\n'}
-        <Text>CREATE </Text> an account.
+        <Text style={{fontWeight: 'bold'}}>CREATE </Text> an account.
       </Text>
       <Text style={styles.message}>Or tap 
-        <Text onPress={() => navigate('NewTrip')}
+        <Text style={{fontWeight: 'bold'}} onPress={() => navigate('Name')}
           > BEGIN!
         </Text>
       </Text>
@@ -43,16 +50,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#4DCCBD',
   },
   title: {
-    fontSize: 60,
+    fontSize: 80,
     textAlign: 'center',
     color: 'white'
   },
   message: {
-    fontSize: 15,
+    fontSize: 20,
     textAlign: 'center',
     margin: 20,
     color: 'white',
   }
 });
 
-export default Begin;
+export default connect(mapStateToProps, mapDispatchToProps)(Begin);

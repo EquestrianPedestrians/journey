@@ -6,6 +6,8 @@ import {
   StyleSheet
 } from 'react-native';
 
+
+
 class Destination extends Component {
   static navigationOptions = {
     title: 'Enter Destination'
@@ -25,8 +27,10 @@ class Destination extends Component {
       <TextInput 
         style={styles.input}
         placeholder="Barcelona"
-        onChangeText={(text) => this.setState({destination:text})}
-        onSubmitEditing={() => navigate('Arrival')}
+        onChangeText={(text) => this.setState({place:text})}
+        onSubmitEditing={() => {
+          this.props.screenProps.update(this.state)
+          navigate('Arrival')}}
         />
     </View>
     )
@@ -43,11 +47,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ADFFED',
   },
   input: {
-    fontSize: 25,
+    fontSize: 30,
     color: '#231651'
   },
   message: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 20,
     color: '#231651',

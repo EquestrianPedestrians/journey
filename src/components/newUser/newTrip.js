@@ -7,6 +7,7 @@ import {
   View
 } from 'react-native';
 
+
 class NewTrip extends Component {
   static navigationOptions = {
     title: 'New Trip'
@@ -25,9 +26,11 @@ class NewTrip extends Component {
       </Text>
       <TextInput 
         style={styles.input}
-        placeholder="Spain 2018"
+        placeholder="Iceland 2018"
         onChangeText={(text) => this.setState({title:text})}
-        onSubmitEditing={() => navigate('Destination')}
+        onSubmitEditing={() => {
+          this.props.screenProps.update(this.state)
+          navigate('Destination')}}
         />
     </View>
     )
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   message: {
-    fontSize: 20,
+    fontSize: 30,
     textAlign: 'center',
     margin: 20,
     color: 'white',
